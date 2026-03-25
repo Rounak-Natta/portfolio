@@ -2,6 +2,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function RootLayout({
   children,
@@ -18,7 +19,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SmoothScroll>
-            {/* 🔥 GLOBAL NAVBAR */}
+            {/* 🔥 3D CURSOR */}
+            <CustomCursor />
+
+            {/* 🔥 NAVBAR */}
             <Navbar />
 
             {children}
