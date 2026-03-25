@@ -292,7 +292,7 @@ export default function Hero() {
             ref={italicRef}
             className="text-2xl md:text-4xl lg:text-6xl serif relative inline-block text-foreground"
           >
-            deliver real impact.
+            Deliver Real Impact.
             <span className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-glow"></span>
           </h2>
         </div>
@@ -313,15 +313,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="mt-12">
-          <button className="group relative px-8 py-3.5 rounded-full bg-primary text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30">
-            <span className="relative z-10 text-sm font-medium tracking-wide">
-              View My Work →
-            </span>
-            <div className="absolute inset-0 bg-white/30 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          </button>
-        </div>
       </div>
 
       {/* LEFT BOTTOM */}
@@ -341,7 +332,7 @@ export default function Hero() {
               Location
             </p>
             <p className="text-xs md:text-sm font-medium text-foreground">
-              Noida, India
+              Kolkata, India
             </p>
             <p className="text-[10px] text-foreground/50 mt-1 font-mono tracking-wider">
               {currentTime}
