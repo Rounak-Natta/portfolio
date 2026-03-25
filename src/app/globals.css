@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Playfair+Display:ital,wght@1&display=swap');
 
 @import "tailwindcss";
 
@@ -6,7 +6,7 @@
    🎨 THEME VARIABLES
 ======================== */
 :root {
-  /* Light Mode Colors */
+  /* Light Mode */
   --background: #fdfaf7;
   --foreground: #1a1a1a;
 
@@ -19,8 +19,9 @@
   --muted: #6b7280;
 
   /* Fonts */
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
 /* ========================
@@ -58,7 +59,7 @@
 }
 
 /* ========================
-   🌍 GLOBAL STYLES
+   🌍 GLOBAL BASE
 ======================== */
 html {
   scroll-behavior: smooth;
@@ -69,12 +70,26 @@ body {
   color: var(--foreground);
   font-family: var(--font-body);
   cursor: none;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Headings */
+/* ========================
+   🧠 TYPOGRAPHY SYSTEM
+======================== */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
+
+/* Serif highlight (for hero line) */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* ========================
+   🎯 UTILITIES
+======================== */
 
 /* Selection */
 ::selection {
@@ -82,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-/* Scrollbar (optional premium touch) */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -92,10 +107,13 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
 }
 
-/* 🎞️ CINEMATIC GRAIN */
+/* ========================
+   🎞️ CINEMATIC GRAIN
+======================== */
 .grain {
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
   animation: grainMove 8s steps(10) infinite;
+  pointer-events: none;
 }
 
 @keyframes grainMove {
@@ -109,4 +127,13 @@ h1, h2, h3, h4, h5, h6 {
   70% { transform: translate(0%, 15%); }
   80% { transform: translate(3%, 35%); }
   90% { transform: translate(-10%, 10%); }
+}
+
+/* ========================
+   📱 MOBILE FIX
+======================== */
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
 }

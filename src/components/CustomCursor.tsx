@@ -4,49 +4,85 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
+    const dot = dotRef.current;
     const follower = followerRef.current;
 
-    if (!cursor || !follower) return;
+    if (!dot || !follower) return;
 
-    const move = (e: MouseEvent) => {
+    // 🧠 Mouse move
+    const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
 
-      gsap.to(cursor, {
+      gsap.to(dot, {
         x: clientX,
         y: clientY,
-        duration: 0.1,
+        duration: 0.08,
       });
 
       gsap.to(follower, {
         x: clientX,
         y: clientY,
-        duration: 0.5,
+        duration: 0.4,
         ease: "power3.out",
       });
     };
 
-    window.addEventListener("mousemove", move);
+    window.addEventListener("mousemove", handleMouseMove);
 
-    // 🔥 hover scaling
-    const hoverEls = document.querySelectorAll("button, a");
+    // 🎯 Hover elements (typed properly)
+    const hoverEls = document.querySelectorAll<HTMLElement>("button, a");
 
+    // 🟢 Handlers (so we can remove them later)
+    const handleEnter = () => {
+      gsap.to(follower, { scale: 1.6, duration: 0.25 });
+    };
+
+    const handleLeave = (el: HTMLElement) => {
+      gsap.to(follower, { scale: 1, duration: 0.25 });
+
+      gsap.to(el, {
+        x: 0,
+        y: 0,
+        duration: 0.3,
+      });
+    };
+
+    const handleMove = (el: HTMLElement) => (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+
+      const relX = e.clientX - rect.left;
+      const relY = e.clientY - rect.top;
+
+      gsap.to(el, {
+        x: (relX - rect.width / 2) * 0.15,
+        y: (relY - rect.height / 2) * 0.15,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    // 🧲 Attach events
     hoverEls.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        gsap.to(follower, { scale: 1.8, duration: 0.3 });
-      });
+      const moveHandler = handleMove(el);
 
-      el.addEventListener("mouseleave", () => {
-        gsap.to(follower, { scale: 1, duration: 0.3 });
-      });
+      el.addEventListener("mouseenter", handleEnter);
+      el.addEventListener("mouseleave", () => handleLeave(el));
+      el.addEventListener("mousemove", moveHandler);
     });
 
+    // 🧹 Cleanup (VERY IMPORTANT)
     return () => {
-      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mousemove", handleMouseMove);
+
+      hoverEls.forEach((el) => {
+        el.removeEventListener("mouseenter", handleEnter);
+        el.removeEventListener("mouseleave", () => handleLeave(el));
+        el.removeEventListener("mousemove", handleMove(el));
+      });
     };
   }, []);
 
@@ -54,17 +90,18 @@ export default function CustomCursor() {
     <>
       {/* DOT */}
       <div
-        ref={cursorRef}
+        ref={dotRef}
         className="fixed top-0 left-0 w-2 h-2 bg-foreground rounded-full pointer-events-none z-[9999]"
       />
 
-      {/* 3D FOLLOWER */}
+      {/* FOLLOWER */}
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-10 h-10 rounded-full 
-        bg-foreground/10 backdrop-blur-md 
+        className="fixed top-0 left-0 w-9 h-9 rounded-full 
+        bg-foreground/10 
+        backdrop-blur-md 
         border border-foreground/20 
-        shadow-[0_0_30px_rgba(255,255,255,0.15)] 
+        shadow-[0_0_25px_rgba(255,255,255,0.08)] 
         pointer-events-none z-[9998]"
       />
     </>

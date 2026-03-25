@@ -11,6 +11,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Remix Icons */}
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
+      </head>
+
       <body className="bg-background text-foreground antialiased">
         <ThemeProvider
           attribute="class"
@@ -18,14 +26,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* 🎯 Global Cursor */}
+          <CustomCursor />
+
+          {/* 🎯 Navbar */}
+          <Navbar />
+
+          {/* 🔥 MAIN WRAPPER (IMPORTANT FIX) */}
           <SmoothScroll>
-            {/* 🔥 3D CURSOR */}
-            <CustomCursor />
-
-            {/* 🔥 NAVBAR */}
-            <Navbar />
-
-            {children}
+            <main >
+              {children}
+            </main>
           </SmoothScroll>
         </ThemeProvider>
       </body>
