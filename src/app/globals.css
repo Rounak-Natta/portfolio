@@ -9,13 +9,10 @@
   /* Light Mode */
   --background: #fdfaf7;
   --foreground: #1a1a1a;
-
   --primary: #4A2E18;
   --primary-light: #6b4226;
-
   --card: #ffffff;
   --border: #e5e5e5;
-
   --muted: #6b7280;
 
   /* Fonts */
@@ -30,13 +27,10 @@
 .dark {
   --background: #0f0f10;
   --foreground: #f5f5f5;
-
   --primary: #c8a27a;
   --primary-light: #e0c3a3;
-
   --card: #1a1a1a;
   --border: #2a2a2a;
-
   --muted: #9ca3af;
 }
 
@@ -46,15 +40,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
-
   --color-card: var(--card);
   --color-border: var(--border);
-
   --color-muted: var(--muted);
-
   --font-sans: var(--font-body);
 }
 
@@ -81,7 +71,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Serif highlight (for hero line) */
 .serif {
   font-family: var(--font-serif);
   font-style: italic;
@@ -90,14 +79,11 @@ h1, h2, h3, h4, h5, h6 {
 /* ========================
    🎯 UTILITIES
 ======================== */
-
-/* Selection */
 ::selection {
   background: var(--primary);
   color: #fff;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -130,10 +116,287 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================
-   📱 MOBILE FIX
+   ✨ AWWWARDS-STYLE ANIMATIONS
+======================== */
+
+/* Spin Animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Floating Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Gradient Animation */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 5s ease infinite;
+  background-size: 200% auto;
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.3;
+    width: 0%;
+  }
+  50% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Slide Animations for Grid Lines */
+@keyframes slide-x {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-x {
+  animation: slide-x 8s ease-in-out infinite;
+}
+
+@keyframes slide-x-reverse {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-x-reverse {
+  animation: slide-x-reverse 8s ease-in-out infinite;
+}
+
+@keyframes slide-y {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-y {
+  animation: slide-y 8s ease-in-out infinite;
+}
+
+@keyframes slide-y-reverse {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-y-reverse {
+  animation: slide-y-reverse 8s ease-in-out infinite;
+}
+
+/* ========================
+   🎨 RESPONSIVE ADJUSTMENTS
+======================== */
+@media (max-width: 768px) {
+  .animate-float,
+  .animate-float-slow {
+    animation-duration: 2s;
+  }
+  
+  .animate-gradient-x {
+    animation-duration: 3s;
+  }
+  
+  .animate-slide-x,
+  .animate-slide-x-reverse,
+  .animate-slide-y,
+  .animate-slide-y-reverse {
+    animation-duration: 12s;
+  }
+}
+
+/* ========================
+   🌙 DARK MODE ENHANCEMENTS
+======================== */
+.dark .bg-primary\/10 {
+  background-color: rgba(200, 162, 122, 0.1);
+}
+
+.dark .bg-primary\/20 {
+  background-color: rgba(200, 162, 122, 0.2);
+}
+
+.dark .border-primary\/20 {
+  border-color: rgba(200, 162, 122, 0.2);
+}
+
+.dark .border-primary\/30 {
+  border-color: rgba(200, 162, 122, 0.3);
+}
+
+.dark .text-primary {
+  color: #c8a27a;
+}
+
+/* ========================
+   🖱️ CURSOR ENHANCEMENTS
+======================== */
+@media (pointer: fine) {
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+}
+
+/* ========================
+   ⚡ PERFORMANCE OPTIMIZATIONS
+======================== */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================
+   📱 MOBILE TOUCH OPTIMIZATIONS
 ======================== */
 @media (pointer: coarse) {
   body {
     cursor: auto;
   }
+  
+  .animate-float,
+  .animate-float-slow,
+  .animate-bounce-slow {
+    animation-duration: 1.5s;
+  }
 }
+
+/* ========================
+   🎨 UTILITY CLASSES
+======================== */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* ========================
+   🔧 DEBUGGING HELPER (Remove in production)
+======================== */
+/* .debug * {
+  outline: 1px solid rgba(255, 0, 0, 0.2);
+} */
